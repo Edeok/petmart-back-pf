@@ -1,15 +1,19 @@
 const { Product } = require("../../db");
+const { Op } = require("sequelize");
 
 // DELETE /product/:idProduct
 const deleteProductById = async (req, res) => {
   console.log("Deleting product by ID");
-  const productId = req.params.idProduct;
+  const productId = req.params.id;
+  console.log("Este es el ID por params: " + productId);
 
   try {
     // Buscar el producto por ID
     const product = await Product.findOne({
       where: {
-        id: productId,
+        id: {
+          [Op.eq]: productId,
+        },
       },
     });
 
@@ -21,7 +25,9 @@ const deleteProductById = async (req, res) => {
     // Eliminar el producto
     await Product.destroy({
       where: {
-        id: productId,
+        id: {
+          [Op.eq]: productId,
+        },
       },
     });
 

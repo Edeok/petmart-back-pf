@@ -13,9 +13,9 @@ const user = require("./user");
 router.use("/products", getAllProducts);
 router.use("/product", getId);
 router.use("/productName", getByName);
-router.use("/product", postId);
-router.use("/product", putId);
-router.use("./product", deleteId);
+router.use("/product/post", postId);
+router.use("/product/put", putId);
+router.use("/products/delete", deleteId);
 router.use("/user", user);
 
 module.exports = router;
